@@ -1,0 +1,11 @@
+html {
+    overflow-y: auto;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56px;
+    bottom: 0;
+}
