@@ -41,8 +41,8 @@ var App = {
         this.heatmap = new HeatmapOverlay(cfg);
 
         this.map = L.map('map', {
-            center: [48, 8],
-            zoom: 13,
+            center: [50.790317, 10.513450],
+            zoom: 6,
             layers: [positron, this.heatmap]
         });
     
