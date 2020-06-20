@@ -97,10 +97,10 @@ var App = {
                                 bounds.extend(L.latLng(d['lat'], d['lng']));
                             }
                         });
-                        App.heatmap.setData({max: max, data: data});
                         if (data.length > 0) {
                             App.map.fitBounds(bounds);
                         }
+                        App.heatmap.setData({max: max, data: data});
                     });
                 }
             };
