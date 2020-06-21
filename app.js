@@ -50,12 +50,12 @@ var App = {
     },
 
     initEventHandlers: function() {
-        $("#uploadButton").click(event => {
+        $(".upload-button").click(event => {
             $("#uploadInput").click();
             event.preventDefault(); 
         });
 
-        $("#info-button").click(event => {
+        $(".info-button").click(event => {
             $("#info-dialog").addClass("is-active");
         });
         $("#info-dialog .close-button").click(event => {

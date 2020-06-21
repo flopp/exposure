@@ -18,7 +18,7 @@
                 <div class="navbar-item">
                     <p class="buttons">
                     <input id="uploadInput" style="display:none" type="file" name="files" accept=".sqlite" onchange="App.importFiles(this.files);">
-                    <a id="uploadButton" class="button is-primary">
+                    <a class="upload-button button is-info is-hidden-mobile">
                         <span class="icon">
                             <i class="fas fa-cloud-upload-alt fa-lg"></i>
                         </span>
@@ -26,7 +26,12 @@
                             Import RaMBLE File
                         </span>
                     </a>
-                    <a id="info-button" class="button" href="#">
+                    <a class="upload-button button is-info is-hidden-tablet">
+                        <span class="icon">
+                            <i class="fas fa-cloud-upload-alt fa-lg"></i>
+                        </span>
+                    </a>
+                    <a class="info-button button is-info" href="#">
                         <span class="icon">
                             <i class="fas fa-info-circle fa-lg"></i>
                         </span>
@@ -66,6 +71,16 @@
                         <li>Upload the <tt>.sqlite</tt> file to this web app by clicking the <i class="fas fa-cloud-upload-alt fa-lg"></i> <b>Import RaMBLE File</b> button.</li>
                         <li>The map should now zoom to the area of your recording and show a heatmap of the seen beacons - the more red the heatmap, the more beacons have been observed at this location.</li>
                     </ol>
+                    <hr />
+                    <p>
+                        This web app is brought to you by <a href="https://www.florian-pigorsch.de" target="_blank">Florian Pigorsch</a>.
+                    </p>
+                    <p>
+                        Feel free to get in touch:
+                        <a href="mailto:fpigorsch@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a> | 
+                        <a href="https://twitter.com/floppgc" target="_blank"><i class="fab fa-twitter-square"></i></a> |
+                        <a href="https://www.github.com/flopp/exposure" target="_blank"><i class="fab fa-github-square"></i></a>
+                    </p>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="close-button button">Close</button>
