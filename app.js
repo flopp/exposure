@@ -54,6 +54,16 @@ var App = {
             $("#uploadInput").click();
             event.preventDefault(); 
         });
+
+        $("#info-button").click(event => {
+            $("#info-dialog").addClass("is-active");
+        });
+        $("#info-dialog .close-button").click(event => {
+            $("#info-dialog").removeClass("is-active");
+        });
+        $("#heatmap-dialog .close-button").click(event => {
+            $("#heatmap-dialog").removeClass("is-active");
+        });
     },
 
     importFiles: files => {
@@ -70,6 +80,7 @@ var App = {
                         const db = new SQL.Database(Uints);
                         const stmt = db.prepare("select latitude as lat, longitude as lng from locations inner join devices where locations.device_id == devices.id and devices.service_uuids == 'fd6f'");
                         var points = new Map();
+                        var count = 0;
                         while (stmt.step()) {
                             var row = stmt.getAsObject();
                             const lat = row['lat'];
@@ -82,6 +93,7 @@ var App = {
                             } else {
                                 points.set(key, {lat: lat, lng: lng, count: 1});
                             }
+                            count += 1;
                         }
                         var max = 0;
                         var data = [];
@@ -101,6 +113,7 @@ var App = {
                             App.map.fitBounds(bounds);
                         }
                         App.heatmap.setData({max: max, data: data});
+                        App.showHeatmapDialog(count, max);
                     });
                 }
             };
@@ -110,5 +123,11 @@ var App = {
         // reset file input
         $('#uploadInput').wrap('<form>').closest('form').get(0).reset();
         $('#uploadInput').unwrap();
+    },
+
+    showHeatmapDialog: function(count, max) {
+        $("#beacon-count").text("" + count);
+        $("#beacon-max").text("" + max);
+        $("#heatmap-dialog").addClass("is-active");
     }
 };

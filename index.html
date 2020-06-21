@@ -10,34 +10,90 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#">
-                    Exposure Notification Heatmap
+                    <img src="logo.png">
                 </a>
                 <div class="navbar-item">
+                    <p class="buttons">
                     <input id="uploadInput" style="display:none" type="file" name="files" accept=".sqlite" onchange="App.importFiles(this.files);">
                     <a id="uploadButton" class="button is-primary">
                         <span class="icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
+                            <i class="fas fa-cloud-upload-alt fa-lg"></i>
                         </span>
                         <span>
                             Import RaMBLE File
                         </span>
                     </a>
-                </div>
-                <div class="navbar-item">
+                    <a id="info-button" class="button" href="#">
+                        <span class="icon">
+                            <i class="fas fa-info-circle fa-lg"></i>
+                        </span>
+                    </a>
                     <a class="button" href="https://www.github.com/flopp/exposure" target="_blank">
                         <span class="icon">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github fa-lg"></i>
                         </span>
-                        <span>GitHub</span>
                     </a>
+                    </p>
                 </div>
             </div>
         </nav>
 
         <div id="map"></div>
+
+        <div id="info-dialog" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <h2 class="modal-card-title">Exposure Notification Heatmap</h2>
+                    <button class="close-button delete"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>
+                        This web app lets you create and display a heatmap from
+                        a Bluetooth LE beacon recording exported by the Android
+                        app <a href="https://play.google.com/store/apps/details?id=com.contextis.android.BLEScanner" target="_blank">RaMBLE - Bluetooth LE Mapper</a>.
+                    </p>
+                    <hr />
+                    <ol>
+                        <li>Install <a href="https://play.google.com/store/apps/details?id=com.contextis.android.BLEScanner" target="_blank">RaMBLE - Bluetooth LE Mapper</a> on your Android phone.</li>
+                        <li>Start a recording by clicking the RaMBLE's <i class="fas fa-play"></i> button.</li>
+                        <li>Let RaMBLE collect some Bluetooth beacons by walking/driving around your city while the recording is running.</li>
+                        <li>Stop the recording.</li>
+                        <li>Export the recording as a <tt>.sqlite</tt> file, by selecting <b>Export Database</b> from RaMBLE's <i class="fas fa-ellipsis-v"></i> menu.</li>
+                        <li>Upload the <tt>.sqlite</tt> file to this web app by clicking the <i class="fas fa-cloud-upload-alt fa-lg"></i> <b>Import RaMBLE File</b> button.</li>
+                        <li>The map should now zoom to the area of your recording and show a heatmap of the seen beacons - the more red the heatmap, the more beacons have been observed at this location.</li>
+                    </ol>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="close-button button">Close</button>
+                </footer>
+            </div>
+        </div>
+
+        <div id="heatmap-dialog" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <h2 class="modal-card-title">RaMBLE Import</h2>
+                    <button class="close-button delete"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p>
+                        The RaMBLE export file has been imported.
+                    </p>
+                    <p>
+                        <span id="beacon-count">n/a</span> exposure notification beacons have been extracted from the file,
+                        a maximum number of <span id="beacon-max">n/a</span> beacons have been observed at a single location.
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="close-button button">Close</button>
+                </footer>
+            </div>
+        </div>
         
         <script src="https://cdn.jsdelivr.net/npm/sql.js@1.3.0/dist/sql-wasm.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>

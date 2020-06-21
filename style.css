@@ -9,3 +9,11 @@ html {
     top: 56px;
     bottom: 0;
 }
+
+.modal {
+    z-index: 2000;
+}
+
+#info-dialog ol{
+    margin-left: 1rem;
+}
